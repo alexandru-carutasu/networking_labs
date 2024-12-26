@@ -32,5 +32,18 @@ scp user@remote_host:/path/to/remote_file /local/destination(copying a file from
 ->for directories :
 scp -r user@remote_host:/remote/directory /local/destination
 
+------
+
+3.Copying files using different protocols(analyzing timeframe and consumption of resources)
+
+FTP:
+time curl -T file-100M.dat -u student:student ftp://host/file-100M-ftp.dat
+
+
+SSH:
+time scp file-100M.dat student@host:file-100M-scp.dat
+
+SSH takes longer due to the time required for encryption
+
 
 
