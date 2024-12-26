@@ -1,0 +1,36 @@
+1.SSH
+
+-> ssh-keygen -t rsa : generating public/private key pairs
+-> ssh-copy-id user@remote_machine_ip : copy the public key to allow connections on another machine
+
+! if ssh-copy-id does not work you can try to copy the public key of the machine you are on in the file .ssh/authorized_keys on the
+machine you are trying to connect to
+
+------
+
+2.SCP
+
+scp (Secure Copy Protocol) is a command-line utility used for securely transferring files between a local machine and a remote server, or between two remote servers.
+It leverages the SSH (Secure Shell) protocol to encrypt the data transfer, ensuring security.
+
+
+Usage of commands:
+
+A)From local to remote:
+
+->for files:
+scp file.txt user@remote_host:/path/to/destination/
+
+->for directories:
+scp -r /local/directory user@remote_host:/path/to/destination
+
+B)From remote to local:
+
+->for files:
+scp user@remote_host:/path/to/remote_file /local/destination(copying a file from remote to local)
+
+->for directories :
+scp -r user@remote_host:/remote/directory /local/destination
+
+
+
