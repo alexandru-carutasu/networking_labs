@@ -45,5 +45,16 @@ time scp file-100M.dat student@host:file-100M-scp.dat
 
 SSH takes longer due to the time required for encryption
 
+------
 
+4.Blocking not encrypted services
+
+Telnet and FTP for example are not using any type of encryption so when using something like tcpdump the messages can be seen in clear.
+In order to block traffic using these services "iptables rules" can be used.
+
+
+
+iptables -A FORWARD -d name_of_station -p tcp --dport telnet -j REJECT -> blocks telnet traffic to "name_of_station" from any other one
+iptables -F -> flushes the rules
+iptables -L FORWARD -v -> allows the view to the blocked packages
 
