@@ -1,0 +1,52 @@
+SDU(service data unit - passed down from an OSI layer or sublayer)
+
+
+Transport Layer:
+
+use services given by network layer
+netwoprk layer does not guarantee the transmission of data , cannot detect errors and does not keep an order (all of these are solved 
+by transport layer)
+
+
+UDP
+->does't establish a connection before sending the data
+->provides an unnreliable connectionless transport service
+->used for applications where delay must be minimized or losses can be recovered by the application itself.
+->supports multicast / broadcast
+->example DNS port 53
+
+A simple protocol is Stop-And-Wait 
+datagram UDP is sent , waiting is done , then the following UDP datagram is sent (the ACK from the receiver is still a datagram but 
+it is not carrying data(only confirms the arrival of the previous datagram)
+IMPORTANT: this protocol in it's self has an issue (the links are not used optimal) SOLUTION:SLIDING WINDOW
+
+SLIDING WINDOW: window_size datagrams will be sent without waiting for an ACK . After each ACK , the window will slide to the right.
+
+
+Ports vs Sockets :
+
+Port : simply a number 16bit (0 - 65535) , acts as an endpoint for services + processes , part of TCP/IP protocol
+
+Socket: Combination of ->IP + Port Number + Protocol (TCP/UDP) ->complete communication endpoint , created and managed by OS
+
+Related to UDP -> Multiple sockets can share the same port (only in UDP as mentioned previously UDP supports multicast and broadcast)
+
+
+
+ +--------+            +--------+
+   | Server |            | Client |
+   +--------+            +--------+                 
+       |                      |
+       |                      |          Descriere:                                 
+    socket()               socket()       socket() - creates an endpoint for communication
+       |                      |           bind() - attaches an address to a socket
+     bind()                   |           sendto() - sends a datagram
+       |                      |           receive() - receives a datagram
+    recv_from() <--------  sendto()       close() - releases the file descriptor
+       |                      |
+    send_to()   -------->  recvfrom()
+       |                      |
+    close()                close()
+
+
+
